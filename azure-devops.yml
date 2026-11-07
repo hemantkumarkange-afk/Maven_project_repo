@@ -7,6 +7,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - script: mvn test
-    displayName: 'Maven test completed successfully'
+    - script: mvn validate
+      displayName: 'Maven Validate'
+  
+    - script: mvn compile
+      displayName: 'Maven Compile completed successfully'
+
+    - script: mvn test
+      displayName: 'Maven test completed successfully'
  
