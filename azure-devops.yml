@@ -9,3 +9,7 @@ pool:
 steps:
   - script: mvn validate
     displayName: 'Maven Validate'
+  
+  - script: mvn compile
+    displayName: 'Maven Compile completed successfully'
+  
