@@ -7,5 +7,5 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-  - sript: mvn validate
+  - script: mvn validate
     displayName: 'Maven Validate'
