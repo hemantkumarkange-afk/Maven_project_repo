@@ -15,4 +15,7 @@ steps:
 
     - script: mvn test
       displayName: 'Maven test completed successfully'
- 
+    
+    - script: mvn package
+      displayName: 'Maven package completed successfully'
+    
