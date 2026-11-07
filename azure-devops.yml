@@ -1,0 +1,11 @@
+trigger:
+- main
+- master
+- devops
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - sript: mvn validate
+    displayName: 'Maven Validate'
