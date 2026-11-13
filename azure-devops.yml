@@ -20,5 +20,4 @@ steps:
     - script: mvn package
       displayName: 'Maven package completed successfully'
       env:
-        MAVEN_OPTS: skipTests=true
-         
+        MAVEN_OPTS: -DskipTests=true
