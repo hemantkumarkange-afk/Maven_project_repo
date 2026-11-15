@@ -21,3 +21,14 @@ steps:
       displayName: 'Maven package completed successfully'
       env:
         MAVEN_OPTS: -DskipTests=true
+    
+    - task: CopyFiles@2
+      inputs:
+        #SourceFolder: '/home/runner/work/1/s/webapp/target'
+        Contents: '**/*.war'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
