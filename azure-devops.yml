@@ -7,7 +7,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
     - script: mvn validate
       displayName: 'Maven Validate'
   
@@ -17,17 +16,21 @@ steps:
     - script: mvn test
       displayName: 'Maven test completed successfully'
     
-    - script: mvn package
+    - script: mvn package -DskipTests=true
       displayName: 'Maven package completed successfully'
-      env:
-        MAVEN_OPTS: -DskipTests=true
+    
+    - script: mv webapp/target/webapp.war webapp/target/ROOT.war
+      displayName: 'Rename webapp.war to ROOT.war'
     
     - task: CopyFiles@2
+      displayName: 'Copy ROOT.war to Staging'
       inputs:
-        #SourceFolder: '/home/runner/work/1/s/webapp/target'
-        Contents: '**/*.war'
+        SourceFolder: 'webapp/target'
+        Contents: 'ROOT.war'
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
     - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: drop'
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
